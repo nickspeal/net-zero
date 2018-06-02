@@ -1,0 +1,35 @@
+{
+  "impact": {
+    "base": {
+      "transportation": {
+        "carmiles": 10000,
+        "airmile": 10000
+      },
+      "heat": {
+        "kwh": 10
+      },
+      "electric": 10
+    },
+    "running": {
+      "transportation": [
+        {
+          "date": "06-02-2018",
+          "miles": 33876
+        },
+        {
+          "date": "06-09-2018",
+          "miles": 33976
+        }
+      ]
+    }
+  },
+  "goals": [
+    {
+      "name": "I wanna drive less",
+      "type": "carmiles",
+      "amount": 10000,
+      "startDate": "06-02-2018",
+      "endDate": "06-02-2019"
+    }
+  ]
+}
