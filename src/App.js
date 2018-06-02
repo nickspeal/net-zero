@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Home from './Home';
+import Profile from './Profile';
+import Mockdata from './Mockdata';
 import {
   BrowserRouter as Router,
   Route,
@@ -22,6 +24,8 @@ class App extends Component {
           <hr/>
 
           <Route exact path="/" component={Home}/>
+          <Route path="/profile" component={Profile}/>
+          <Route path="/mockdata" component={Mockdata}/>
         </div>
       </Router>
     );
