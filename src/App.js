@@ -19,6 +19,7 @@ class App extends Component {
             <li><Link to="/survey">Survey</Link></li>
             <li><Link to="/profile">My Profile</Link></li>
             <li><Link to="/tracker">Track My Data</Link></li>
+            <li><Link to="/mockdata">Load Mock Data JSON into localstorage</Link></li>
           </ul>
 
           <hr/>
