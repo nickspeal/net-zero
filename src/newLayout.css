@@ -1,0 +1,24 @@
+.whole-page {
+  min-height: 100vh;
+  background: #64b3df;
+}
+
+body {
+  background: #64b3df;
+}
+
+img {
+  float: left;
+}
+h1 {
+  text-align: center;
+  padding-top: 40px;
+  font-size: 70px;
+  color: green;
+}
+
+.flexi {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
