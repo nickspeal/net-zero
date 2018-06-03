@@ -129,25 +129,31 @@ export default class Tracker extends Component {
           </Row>
           <Row className="selector">
             <Col
-              className={`green ${this.state.period === 'weekly' ? 'shadow' : ''}`}
+              className={`green ${
+                this.state.period === "weekly" ? "shadow" : ""
+              }`}
               onClick={() => {
-                this.changePeriod('weekly');
+                this.changePeriod("weekly");
               }}
             >
               <h4>Past Week</h4>
             </Col>
             <Col
-              className={`yellow  ${this.state.period === 'monthly' ? 'shadow' : ''}`}
+              className={`yellow  ${
+                this.state.period === "monthly" ? "shadow" : ""
+              }`}
               onClick={() => {
-                this.changePeriod('monthly');
+                this.changePeriod("monthly");
               }}
             >
               <h4>Past Month</h4>
             </Col>
             <Col
-              className={`red  ${this.state.period === 'yearly' ? 'shadow' : ''}`}
+              className={`red  ${
+                this.state.period === "yearly" ? "shadow" : ""
+              }`}
               onClick={() => {
-                this.changePeriod('yearly');
+                this.changePeriod("yearly");
               }}
             >
               <h4>Past Year</h4>
@@ -158,7 +164,9 @@ export default class Tracker extends Component {
           {!this.state.noOldDate ? (
             <ProgressChart
               current={this.state.usedMiles}
-              goal={this.state.goal * PERIOD_CONVERSION[this.state.period] / 365}
+              goal={
+                this.state.goal * PERIOD_CONVERSION[this.state.period] / 365
+              }
             />
           ) : (
             <span>Insufficient data to show this time range</span>
@@ -166,30 +174,34 @@ export default class Tracker extends Component {
           <br />
           <MileageInput updateTransportation={this.onNewMileage} />
 
-
-
-
           <Row className="my-4">
             <Col className="spacer">
-              <h5>Distance Traveled: {this.state.usedMiles.toFixed(2)} miles</h5>
+              <h5>
+                Distance Traveled: {this.state.usedMiles.toFixed(2)} miles
+              </h5>
             </Col>
             <Col className="spacer">
-              <h5>Goal: {(this.state.goal * PERIOD_CONVERSION[this.state.period] / 365).toFixed(0)} miles</h5>
+              <h5>
+                Goal:{" "}
+                {(
+                  this.state.goal *
+                  PERIOD_CONVERSION[this.state.period] /
+                  365
+                ).toFixed(0)}{" "}
+                miles
+              </h5>
             </Col>
           </Row>
           <Conversions miles={this.state.usedMiles} />
         </Container>
 
-
-
-
-        <button
+        {/* <button
           onClick={() =>
             this.setState({ showCumulative: !this.state.showCumulative })
           }
         >
           Toggle Chart
-        </button>
+        </button> */}
         {this.state.showCumulative && (
           <OdometerChart data={this.impact.running.transportation} />
         )}

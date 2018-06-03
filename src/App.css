@@ -44,7 +44,7 @@ td {
 
 .title {
   text-align: center;
-  color: red;
+  color: #c62828;
 }
 
 .fa-center {
@@ -53,15 +53,15 @@ td {
 }
 
 .green {
-  background: green;
+  background: #22a54b;
 }
 
 .yellow {
-  background: yellow;
+  background: #ffa000;
 }
 
 .red {
-  background: red;
+  background: #c62828;
 }
 
 #tracker h4 {

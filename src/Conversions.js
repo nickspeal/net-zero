@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from "reactstrap";
-import './App.css';
+import React, { Component } from "react";
+import { Container, Row, Col, Button } from "reactstrap";
+import "./App.css";
 
 // Equivalents per mile
 const EQUIVALENTS = {
-  'co2': 1690 / 2000,
-  'trees': 20 / 2000,
-  'dollars': 8.43 / 2000,
-}
+  co2: 1690 / 2000,
+  trees: 20 / 2000,
+  dollars: 8.43 / 2000
+};
 
 class Conversions extends Component {
   // Props:
   // miles
   render() {
-    return ([
+    return [
       <Row>
         <Col className="spacer">
           <h5>Distance Traveled</h5>
@@ -27,7 +27,7 @@ class Conversions extends Component {
           <h5>CO2 Emitted</h5>
         </Col>
         <Col className="spacer">
-          <h5>{(this.props.miles * EQUIVALENTS['co2']).toFixed(1)} lbs</h5>
+          <h5>{(this.props.miles * EQUIVALENTS["co2"]).toFixed(1)} lbs</h5>
         </Col>
       </Row>,
       <Row>
@@ -35,7 +35,7 @@ class Conversions extends Component {
           <h5>Trees Required To Offset</h5>
         </Col>
         <Col className="spacer">
-          <h5>{(this.props.miles * EQUIVALENTS['trees']).toFixed(0)}</h5>
+          <h5>{(this.props.miles * EQUIVALENTS["trees"]).toFixed(0)}</h5>
         </Col>
       </Row>,
       <Row>
@@ -43,15 +43,21 @@ class Conversions extends Component {
           <h5>Dollars Required To Offset</h5>
         </Col>
         <Col className="spacer">
-          <h5>${(this.props.miles * EQUIVALENTS['dollars']).toFixed(2)}</h5>
+          <h5>${(this.props.miles * EQUIVALENTS["dollars"]).toFixed(2)}</h5>
         </Col>
       </Row>,
       <Row>
-        <Col className="spacer">
-          <h5>Offset Now!</h5>
-        </Col>
-      </Row>,
-    ]);
+        {/* <Col className=""> */}
+        <Button
+          color="success py-2"
+          block
+          onClick={() => (window.location = "http://www.facebook.com/")}
+        >
+          Offset Now!
+        </Button>
+        {/* </Col> */}
+      </Row>
+    ];
   }
 }
 
