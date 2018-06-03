@@ -39,7 +39,7 @@ export default class MileageInput extends Component {
                   type="number"
                   name="odometer"
                   id="odometer"
-                  placeholder="new odometer reading...."
+                  placeholder="Enter Your Current Odometer Reading"
                 />
               </FormGroup>
             </Col>

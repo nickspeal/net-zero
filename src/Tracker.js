@@ -119,7 +119,7 @@ export default class Tracker extends Component {
         <Container id="tracker">
           <Row>
             <Col>
-              <h1 className="title">Track</h1>
+              <h1 className="title">Track Your Miles</h1>
             </Col>
           </Row>
           <Row>
@@ -134,7 +134,7 @@ export default class Tracker extends Component {
                 this.changePeriod('weekly');
               }}
             >
-              <h4>Weekly</h4>
+              <h4>Past Week</h4>
             </Col>
             <Col
               className={`yellow  ${this.state.period === 'monthly' ? 'shadow' : ''}`}
@@ -142,7 +142,7 @@ export default class Tracker extends Component {
                 this.changePeriod('monthly');
               }}
             >
-              <h4>Monthly</h4>
+              <h4>Past Month</h4>
             </Col>
             <Col
               className={`red  ${this.state.period === 'yearly' ? 'shadow' : ''}`}
@@ -150,55 +150,38 @@ export default class Tracker extends Component {
                 this.changePeriod('yearly');
               }}
             >
-              <h4>Yearly</h4>
+              <h4>Past Year</h4>
             </Col>
           </Row>
+
+
+          {!this.state.noOldDate ? (
+            <ProgressChart
+              current={this.state.usedMiles}
+              goal={this.state.goal}
+            />
+          ) : (
+            <span>Insufficient data to show this time range</span>
+          )}
+          <MileageInput updateTransportation={this.onNewMileage} />
+
+
+
+
           <Row className="my-4">
             <Col className="spacer">
-              <h5>{this.state.usedMiles.toFixed(2)} current Miles</h5>
+              <h5>Distance Traveled: {this.state.usedMiles.toFixed(2)} miles</h5>
             </Col>
             <Col className="spacer">
-              <h5>{this.state.goal} goal</h5>
+              <h5>Goal: {(this.state.goal * PERIOD_CONVERSION[this.state.period] / 365).toFixed(0)} miles</h5>
             </Col>
           </Row>
-          <Row>
-            <Col className="spacer">
-              <h5>hi</h5>
-            </Col>
-            <Col className="spacer">
-              <h5>Bye</h5>
-            </Col>
-          </Row>
-          <Row>
-            <Col className="spacer">
-              <h5>hi</h5>
-            </Col>
-            <Col className="spacer">
-              <h5>Bye</h5>
-            </Col>
-          </Row>
-          <Row>
-            <Col className="spacer">
-              <h5>hi</h5>
-            </Col>
-            <Col className="spacer">
-              <h5>Bye</h5>
-            </Col>
-          </Row>
+          <Conversions miles={this.state.usedMiles} />
         </Container>
-        {/* {!this.state.noOldDate ? (
-          <ProgressChart
-            current={this.state.usedMiles}
-            goal={this.state.goal}
-          />
-        ) : (
-          <span>Insufficient data to show this time range</span>
-        )}
-        <MileageInput updateTransportation={this.onNewMileage} />
-        {/*this.state.data && (
-          <OdometerChart data={this.state.data.running.transportation} />
-        )*/}{" "}
-        <Conversions miles={this.state.usedMiles} />
+
+
+
+
         <button
           onClick={() =>
             this.setState({ showCumulative: !this.state.showCumulative })
@@ -209,9 +192,6 @@ export default class Tracker extends Component {
         {this.state.showCumulative && (
           <OdometerChart data={this.impact.running.transportation} />
         )}
-        {/* </Col> */}
-        {/* <Row> */}
-        {/* </Constainer>); */}
       </div>
     );
   }
