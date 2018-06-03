@@ -5,6 +5,8 @@ import {
 import Menubar from './Menubar';
 import './App.css';
 
+const ICON_SIZE = 'fa-9x';
+
 class Home extends Component {
   render() {
     return (
@@ -22,12 +24,12 @@ class Home extends Component {
           <table>
             <tbody>
               <tr>
-                <td><Link to="/tracker">Car</Link></td>
-                <td>Lightning/Water</td>
+                <td><Link to="/tracker"><i class={`fas fa-car ${ICON_SIZE}`}></i></Link></td>
+                <td><Link to="/tracker"><i class={`fas fa-bolt ${ICON_SIZE}`}></i></Link></td>
               </tr>
               <tr>
-                <td>WM Recycling</td>
-                <td>Cow</td>
+                <td><Link to="/tracker"><i class={`fas fa-recycle ${ICON_SIZE}`}></i></Link></td>
+                <td><Link to="/tracker"><i class={`fas fa-utensils ${ICON_SIZE}`}></i></Link></td>
               </tr>
             </tbody>
           </table>

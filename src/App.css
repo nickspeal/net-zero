@@ -39,3 +39,7 @@ body {
   height: 100vh;
   width: 200px;
 }
+
+td {
+  padding: 2rem;
+}
