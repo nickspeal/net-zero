@@ -7,7 +7,7 @@ const options = {
     type: "bar"
   },
   title: {
-    text: "Your Progress"
+    text: ""
   },
   yAxis: {
     title: {
