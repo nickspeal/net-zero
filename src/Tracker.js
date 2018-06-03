@@ -126,7 +126,7 @@ export default class Tracker extends Component {
           </Row>
           <Row className="selector">
             <Col
-              className="green"
+              className={`green ${this.state.period === 'weekly' ? 'shadow' : ''}`}
               onClick={() => {
                 this.setState({ period: "weekly" });
               }}
@@ -134,7 +134,7 @@ export default class Tracker extends Component {
               <h4>Weekly</h4>
             </Col>
             <Col
-              className="yellow"
+              className={`yellow  ${this.state.period === 'monthly' ? 'shadow' : ''}`}
               onClick={() => {
                 this.setState({ period: "monthly" });
               }}
@@ -142,7 +142,7 @@ export default class Tracker extends Component {
               <h4>Monthly</h4>
             </Col>
             <Col
-              className="red"
+              className={`red  ${this.state.period === 'yearly' ? 'shadow' : ''}`}
               onClick={() => {
                 this.setState({ period: "yearly" });
               }}
