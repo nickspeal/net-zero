@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MileageInput from "./MileageInput";
 import OdometerChart from "./OdometerChart";
+import ProgressChart from "./ProgressChart";
 import moment from "moment";
 
 export default class Tracker extends Component {
@@ -24,6 +25,7 @@ export default class Tracker extends Component {
   render() {
     return (
       <div>
+        <ProgressChart current={700} goal={1000} />
         <MileageInput updateTransportation={this.updateTransportation} />
         {this.state.data && (
           <OdometerChart data={this.state.data.running.transportation} />
