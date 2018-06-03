@@ -20,10 +20,11 @@ const options = {
   plotOptions: {
     column: {
       dataLabels: {
+        format: function () {return this.x},
         inside: true,
       }
     }
-  }
+  },
 };
 function transformedData(current, goal) {
   let data = [
