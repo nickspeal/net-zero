@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MileageInput from "./MileageInput";
+import OdometerChart from "./OdometerChart";
 import moment from "moment";
 
 export default class Tracker extends Component {
@@ -24,6 +25,9 @@ export default class Tracker extends Component {
     return (
       <div>
         <MileageInput updateTransportation={this.updateTransportation} />
+        {this.state.data && (
+          <OdometerChart data={this.state.data.running.transportation} />
+        )}
       </div>
     );
   }
