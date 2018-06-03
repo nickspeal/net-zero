@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import "./newLayout.css";
-import Mockdata from './Mockdata';
-import layout from "./images/APP.png";
+import Mockdata from "./Mockdata";
+import layout from "./images/APP_V2.jpg";
 import { Redirect } from "react-router-dom";
 
 export default class Front extends Component {
@@ -30,12 +30,10 @@ export default class Front extends Component {
                   this.props.history.push("/tracker");
                 }}
               >
-                <img src={layout} />
+                <img src={layout} className="page-height" />
               </div>
             </Col>
-
           </Row>
-
         </Container>
         <h1>Click Anywhere to Continue!</h1>
         <Mockdata />
