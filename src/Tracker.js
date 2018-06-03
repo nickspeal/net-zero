@@ -3,9 +3,10 @@ import moment from "moment";
 import { Container, Row, Col } from "reactstrap";
 
 import MileageInput from "./MileageInput";
-import OdometerChart from "./OdometerChart";
+import OdometerChartWrapper from "./OdometerChartWrapper";
 import ProgressChart from "./ProgressChart";
 import Conversions from "./Conversions";
+import PeriodPicker from './PeriodPicker';
 
 const FORMAT = "MM-DD-YYYY";
 const PERIOD_CONVERSION = {
@@ -14,7 +15,7 @@ const PERIOD_CONVERSION = {
   yearly: 365
 };
 
-export default class Tracker extends Component {
+class Tracker extends Component {
   constructor(props) {
     super(props);
     this.impact = JSON.parse(localStorage.getItem("impact"));
@@ -44,7 +45,7 @@ export default class Tracker extends Component {
     console.log("Fetching Miles per day for date: ", dateOfInterest.calendar());
     const list =
       this.impact && this.impact.running && this.impact.running.transportation;
-    if (list === undefined) {
+    if (list === null) {
       return undefined;
     }
 
@@ -127,40 +128,8 @@ export default class Tracker extends Component {
               <i className="fas fa-car fa-7x fa-center" />
             </Col>
           </Row>
-          <Row className="selector">
-            <Col
-              className={`green ${
-                this.state.period === "weekly" ? "shadow" : ""
-              }`}
-              onClick={() => {
-                this.changePeriod("weekly");
-              }}
-            >
-              <h4>Past Week</h4>
-            </Col>
-            <Col
-              className={`yellow  ${
-                this.state.period === "monthly" ? "shadow" : ""
-              }`}
-              onClick={() => {
-                this.changePeriod("monthly");
-              }}
-            >
-              <h4>Past Month</h4>
-            </Col>
-            <Col
-              className={`red  ${
-                this.state.period === "yearly" ? "shadow" : ""
-              }`}
-              onClick={() => {
-                this.changePeriod("yearly");
-              }}
-            >
-              <h4>Past Year</h4>
-            </Col>
-          </Row>
+          <PeriodPicker period={this.state.period} onChange={this.changePeriod} />
           <br />
-
           {!this.state.noOldDate ? (
             <ProgressChart
               current={this.state.usedMiles}
@@ -174,38 +143,19 @@ export default class Tracker extends Component {
           <br />
           <MileageInput updateTransportation={this.onNewMileage} />
 
-          <Row className="my-4">
-            <Col className="spacer">
-              <h5>
-                Distance Traveled: {this.state.usedMiles.toFixed(2)} miles
-              </h5>
-            </Col>
-            <Col className="spacer">
-              <h5>
-                Goal:{" "}
-                {(
-                  this.state.goal *
-                  PERIOD_CONVERSION[this.state.period] /
-                  365
-                ).toFixed(0)}{" "}
-                miles
-              </h5>
-            </Col>
-          </Row>
-          <Conversions miles={this.state.usedMiles} />
+          <Conversions
+            miles={this.state.usedMiles}
+            goal={this.state.goal}
+            period={this.state.period}
+          />
         </Container>
 
-        {/* <button
-          onClick={() =>
-            this.setState({ showCumulative: !this.state.showCumulative })
-          }
-        >
-          Toggle Chart
-        </button> */}
-        {this.state.showCumulative && (
-          <OdometerChart data={this.impact.running.transportation} />
-        )}
+
+        <OdometerChartWrapper data={this.impact.running.transportation} />
       </div>
     );
   }
 }
+
+export {PERIOD_CONVERSION};
+export default Tracker;
