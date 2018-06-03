@@ -109,6 +109,9 @@ export default class Tracker extends Component {
   onPeriodChange = e => {
     this.setState({ period: e.target.value }, this.updateValue);
   };
+  changePeriod = period => {
+    this.setState({ period }, this.updateValue);
+  };
 
   render() {
     return (
@@ -125,28 +128,16 @@ export default class Tracker extends Component {
             </Col>
           </Row>
           <Row className="selector">
-            <Col
-              className="green"
-              onClick={() => {
-                this.setState({ period: "weekly" });
-              }}
-            >
+            <Col className="green" onClick={() => this.changePeriod("weekly")}>
               <h4>Weekly</h4>
             </Col>
             <Col
               className="yellow"
-              onClick={() => {
-                this.setState({ period: "monthly" });
-              }}
+              onClick={() => this.changePeriod("monthly")}
             >
               <h4>Monthly</h4>
             </Col>
-            <Col
-              className="red"
-              onClick={() => {
-                this.setState({ period: "yearly" });
-              }}
-            >
+            <Col className="red" onClick={() => this.changePeriod("yearly")}>
               <h4>Yearly</h4>
             </Col>
           </Row>
