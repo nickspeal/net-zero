@@ -83,3 +83,7 @@ td {
   padding: 0.5rem;
   background: white;
 }
+
+.shadow {
+  box-shadow: 10px 10px 10px black !important;
+}
