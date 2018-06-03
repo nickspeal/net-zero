@@ -85,5 +85,7 @@ td {
 }
 
 .shadow {
-  box-shadow: 10px 10px 10px black !important;
+  /* box-shadow: 10px 10px 10px black !important; */
+  border: 2px solid black;
+  border-radius: 4px;
 }
