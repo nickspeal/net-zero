@@ -28,9 +28,9 @@ const options = {
 };
 function transformedData(current, goal) {
   let data = [
-    { name: "your goal", data: [goal], color: "#29B6F6" },
+    { name: "Goal", data: [goal], color: "#29B6F6" },
     {
-      name: "your current usage",
+      name: "Miles Traveled",
       data: [current],
       color: current < goal ? "#66BB6A" : "#FF7043"
     }

@@ -20,7 +20,7 @@ export default class Tracker extends Component {
     this.impact = JSON.parse(localStorage.getItem("impact"));
   }
   state = {
-    period: "weekly",
+    period: "yearly",
     usedMiles: 0,
     goal: 10000,
     noOldDate: false,
@@ -153,16 +153,17 @@ export default class Tracker extends Component {
               <h4>Past Year</h4>
             </Col>
           </Row>
-
+          <br />
 
           {!this.state.noOldDate ? (
             <ProgressChart
               current={this.state.usedMiles}
-              goal={this.state.goal}
+              goal={this.state.goal * PERIOD_CONVERSION[this.state.period] / 365}
             />
           ) : (
             <span>Insufficient data to show this time range</span>
           )}
+          <br />
           <MileageInput updateTransportation={this.onNewMileage} />
 
 
