@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import moment from "moment";
+import { Container, Row, Col } from "reactstrap";
+
 import MileageInput from "./MileageInput";
 import OdometerChart from "./OdometerChart";
 import ProgressChart from "./ProgressChart";
-import moment from "moment";
-import { Container, Row, Col } from "reactstrap";
+import Conversions from "./Conversions";
 
 const FORMAT = "MM-DD-YYYY";
 const PERIOD_CONVERSION = {
@@ -20,28 +22,20 @@ export default class Tracker extends Component {
   state = {
     period: "weekly",
     usedMiles: 0,
-    goal: 1000,
-    noOldDate: false
+    goal: 10000,
+    noOldDate: false,
+    showCumulative: false
   };
 
   componentWillMount() {
-    console.log("component will mount");
     this.updateValue();
   }
 
   onNewMileage = (miles, date) => {
     const nextData = { ...this.impact };
     nextData.running.transportation.push({ miles, date });
-    // const joined = this.state.data.running.transportation.concat(data);
-
     this.impact = nextData;
     // TODO: Update localStorage
-
-    // From mock data component:
-    // Object.keys(data).forEach(key => {
-    //   console.log(`Setting key: ${key} value: ${JSON.stringify(data[key])}`);
-    //   localStorage.setItem(key, JSON.stringify(data[key]));
-    // });
     this.updateValue();
   };
 
@@ -50,7 +44,6 @@ export default class Tracker extends Component {
     console.log("Fetching Miles per day for date: ", dateOfInterest.calendar());
     const list =
       this.impact && this.impact.running && this.impact.running.transportation;
-    console.log(list);
     if (list === undefined) {
       return undefined;
     }
@@ -59,12 +52,9 @@ export default class Tracker extends Component {
     let nextIndex = list.findIndex(
       item => moment(item.date, FORMAT) > dateOfInterest
     );
-    console.log("nextIndex", nextIndex);
 
     if (nextIndex === -1) {
-      console.error("Date not found");
-      // If no index is found, assume the last date?
-      nextIndex = list.length - 1;
+      console.error("No date in the dataset is after date of interest.");
     }
 
     const milesElapsed = list[nextIndex].miles - list[nextIndex - 1].miles;
@@ -108,12 +98,16 @@ export default class Tracker extends Component {
     } else {
       this.setState({ noOldDate: false });
     }
-    for (var i = 0; i < PERIOD_CONVERSION[this.state.period]; i++) {
+    for (var i = 1; i <= PERIOD_CONVERSION[this.state.period]; i++) {
       console.log("i is ", i);
       const startDateCopy = startDate.clone();
       usedMiles += this.fetchMilesPerDay(startDateCopy.subtract(i, "days"));
     }
     this.setState({ usedMiles });
+  };
+
+  onPeriodChange = e => {
+    this.setState({ period: e.target.value }, this.updateValue);
   };
 
   render() {
@@ -197,11 +191,24 @@ export default class Tracker extends Component {
         ) : (
           <span>Insufficient data to show this time range</span>
         )}
-
         <MileageInput updateTransportation={this.onNewMileage} />
         {/*this.state.data && (
           <OdometerChart data={this.state.data.running.transportation} />
         )*/}{" "}
+        <Conversions miles={this.state.usedMiles} />
+        <button
+          onClick={() =>
+            this.setState({ showCumulative: !this.state.showCumulative })
+          }
+        >
+          Toggle Chart
+        </button>
+        {this.state.showCumulative && (
+          <OdometerChart data={this.impact.running.transportation} />
+        )}
+        {/* </Col> */}
+        {/* <Row> */}
+        {/* </Constainer>); */}
       </div>
     );
   }

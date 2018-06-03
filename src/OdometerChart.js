@@ -21,7 +21,7 @@ function transformedData(data) {
   if (data) {
     let arrayData = data.map(d => {
       let da = d.date.split("-");
-      let newDate = Date.UTC(da[2], da[0], da[1]);
+      let newDate = Date.UTC(da[2], da[0]-1, da[1]); // Bizarre month convention
       return [newDate, d.miles];
     });
     return { ...options, series: [{ name: "mileage", data: arrayData }] };
