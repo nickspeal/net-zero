@@ -30,7 +30,7 @@ class Home extends Component {
           <table>
             <tbody>
               <tr>
-                <td>Car</td>
+                <td><Link to="/tracker">Car</Link></td>
                 <td>Lightning/Water</td>
               </tr>
               <tr>
