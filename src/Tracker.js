@@ -116,43 +116,42 @@ class Tracker extends Component {
 
   render() {
     return (
-      <div>
-        <Container id="tracker">
-          <Row>
-            <Col>
-              <h1 className="title">Track Your Miles</h1>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <i className="fas fa-car fa-7x fa-center" />
-            </Col>
-          </Row>
-          <PeriodPicker period={this.state.period} onChange={this.changePeriod} />
-          <br />
-          {!this.state.noOldDate ? (
-            <ProgressChart
-              current={this.state.usedMiles}
-              goal={
-                this.state.goal * PERIOD_CONVERSION[this.state.period] / 365
-              }
-            />
-          ) : (
-            <span>Insufficient data to show this time range</span>
-          )}
-          <br />
-          <MileageInput updateTransportation={this.onNewMileage} />
+      <Container id="tracker">
+        <Row>
+          <Col>
+            <h1 className="title">Track Your Miles</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <i className="fas fa-car fa-7x fa-center" />
+          </Col>
+        </Row>
 
+        <br />
+        {!this.state.noOldDate && this.impact ? ([
+          <PeriodPicker period={this.state.period} onChange={this.changePeriod} />,
+          <ProgressChart
+            current={this.state.usedMiles}
+            goal={
+              this.state.goal * PERIOD_CONVERSION[this.state.period] / 365
+            }
+          />
+        ]) : (
+          <span>Insufficient data to show this time range</span>
+        )}
+        <br />
+        <MileageInput updateTransportation={this.onNewMileage} />
+
+        {this.impact && ([
           <Conversions
             miles={this.state.usedMiles}
             goal={this.state.goal}
             period={this.state.period}
-          />
-        </Container>
-
-
-        <OdometerChartWrapper data={this.impact.running.transportation} />
-      </div>
+          />,
+          <OdometerChartWrapper data={this.impact.running.transportation} />
+        ])}
+    </Container>
     );
   }
 }
