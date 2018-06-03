@@ -41,3 +41,45 @@ body {
 td {
   padding: 2rem;
 }
+
+.title {
+  text-align: center;
+  color: red;
+}
+
+.fa-center {
+  display: block;
+  text-align: center;
+}
+
+.green {
+  background: green;
+}
+
+.yellow {
+  background: yellow;
+}
+
+.red {
+  background: red;
+}
+
+#tracker h4 {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.selector > div {
+  /* margin: 10px; */
+}
+
+.outline {
+  border: 1px solid grey;
+  border-radius: 0.25rem;
+}
+
+.spacer {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background: white;
+}
