@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Button } from "reactstrap";
+import { PERIOD_CONVERSION } from './Tracker.js';
 import "./App.css";
 
 // Equivalents per mile
@@ -12,8 +13,29 @@ const EQUIVALENTS = {
 class Conversions extends Component {
   // Props:
   // miles
+  //goal
+  //period
+
   render() {
     return [
+      <Row className="my-4">
+        <Col className="spacer">
+          <h5>
+            Distance Traveled: {this.props.miles.toFixed(2)} miles
+          </h5>
+        </Col>
+        <Col className="spacer">
+          <h5>
+            Goal:{" "}
+            {(
+              this.props.goal *
+              PERIOD_CONVERSION[this.props.period] /
+              365
+            ).toFixed(0)}{" "}
+            miles
+          </h5>
+        </Col>
+      </Row>,
       <Row>
         <Col className="spacer">
           <h5>Distance Traveled</h5>
