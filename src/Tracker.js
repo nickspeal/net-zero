@@ -5,6 +5,7 @@ import { Container, Row, Col } from "reactstrap";
 import MileageInput from "./MileageInput";
 import OdometerChart from "./OdometerChart";
 import ProgressChart from "./ProgressChart";
+import Conversions from './Conversions';
 
 const FORMAT = 'MM-DD-YYYY';
 const PERIOD_CONVERSION = {
@@ -110,6 +111,7 @@ export default class Tracker extends Component {
           <span>Insufficient data to show this time range</span>
         )}
         <MileageInput updateTransportation={this.onNewMileage} />
+        <Conversions miles={this.state.usedMiles} />
         <button onClick={() => this.setState({ showCumulative: !this.state.showCumulative })}>Toggle Chart</button>
         {this.state.showCumulative && (
           <OdometerChart data={this.impact.running.transportation} />
