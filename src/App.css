@@ -41,3 +41,7 @@ body {
 td {
   padding: 2rem;
 }
+
+.chart-container {
+  /* width: 80%; */
+}

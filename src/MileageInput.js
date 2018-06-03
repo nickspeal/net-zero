@@ -29,27 +29,27 @@ export default class MileageInput extends Component {
   render() {
     return (
       <div>
-        <Container>
-          <Form onSubmit={this.handleSubmit}>
-            <Row>
-              <Col>
-                <FormGroup>
-                  <Input
-                    value={this.state.miles}
-                    onChange={this.handleChange}
-                    type="number"
-                    name="odometer"
-                    id="odometer"
-                    placeholder="new odometer reading...."
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Button color="primary" block type="submit">
-              Submit
-            </Button>
-          </Form>
-        </Container>
+        <Form onSubmit={this.handleSubmit}>
+          <Row>
+            <Col sm="6">
+              <FormGroup>
+                <Input
+                  value={this.state.miles}
+                  onChange={this.handleChange}
+                  type="number"
+                  name="odometer"
+                  id="odometer"
+                  placeholder="new odometer reading...."
+                />
+              </FormGroup>
+            </Col>
+            <Col sm="6">
+              <Button color="primary" block type="submit">
+                Submit
+              </Button>
+            </Col>
+          </Row>
+        </Form>
       </div>
     );
   }

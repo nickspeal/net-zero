@@ -16,6 +16,13 @@ const options = {
   },
   xAxis: {
     visible: true
+  },
+  plotOptions: {
+    column: {
+      dataLabels: {
+        inside: true,
+      }
+    }
   }
 };
 function transformedData(current, goal) {
