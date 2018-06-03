@@ -3,7 +3,7 @@ import Home from "./Home";
 import Profile from "./Profile";
 import Mockdata from "./Mockdata";
 import Tracker from "./Tracker";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "./App.css";
 
 class App extends Component {
