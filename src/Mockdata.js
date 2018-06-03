@@ -6,7 +6,7 @@ class Mockdata extends Component {
     Object.keys(data).forEach(key => {
       console.log(`Setting key: ${key} value: ${JSON.stringify(data[key])}`);
       localStorage.setItem(key, JSON.stringify(data[key]));
-    })
+    });
   }
 
   render() {

@@ -7,8 +7,8 @@ export default class MileageInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      miles: "",
-      date: moment().format("MM-DD-YYYYY")
+      miles: undefined,
+      date: moment().format("MM-DD-YYYY")
     };
   }
 
@@ -18,8 +18,8 @@ export default class MileageInput extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.updateTransportation(this.state);
-    this.setState({ miles: "" });
+    this.props.updateTransportation(this.state.miles, this.state.date);
+    this.setState({ miles: undefined });
   };
 
   handleDateChange = date => {
