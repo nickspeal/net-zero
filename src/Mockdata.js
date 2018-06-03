@@ -10,13 +10,7 @@ class Mockdata extends Component {
   }
 
   render() {
-    return (
-      <div>
-        Mock Data saved to localstorage:
-        <br />
-        {JSON.stringify(data)}
-      </div>
-    );
+    return null;
   }
 }
 

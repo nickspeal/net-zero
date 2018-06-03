@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import "./newLayout.css";
-// import Logo from "./images/logo-carbon-footprint.png";
+import Mockdata from './Mockdata';
 import layout from "./images/APP.png";
 import { Redirect } from "react-router-dom";
 
@@ -33,8 +33,12 @@ export default class Front extends Component {
                 <img src={layout} />
               </div>
             </Col>
+
           </Row>
+
         </Container>
+        <h1>Click Anywhere to Continue!</h1>
+        <Mockdata />
       </div>
     );
   }
