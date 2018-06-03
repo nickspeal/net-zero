@@ -50,9 +50,6 @@ class Conversions extends Component {
         <Col className="spacer">
           <h5>Offset Now!</h5>
         </Col>
-        <Col className="spacer">
-          <h5>Click here!</h5>
-        </Col>
       </Row>,
     ]);
   }
