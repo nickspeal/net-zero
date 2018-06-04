@@ -7,6 +7,7 @@ import OdometerChartWrapper from "./OdometerChartWrapper";
 import ProgressChart from "./ProgressChart";
 import Conversions from "./Conversions";
 import PeriodPicker from './PeriodPicker';
+import Odometer from './Odometer';
 
 const FORMAT = "MM-DD-YYYY";
 const PERIOD_CONVERSION = {
@@ -32,9 +33,13 @@ class Tracker extends Component {
     this.updateValue();
   }
 
-  onNewMileage = (miles, date) => {
-    const nextData = { ...this.impact };
-    nextData.running.transportation.push({ miles, date });
+  onNewMileage = (miles, datestring) => {
+    const nextData = this.impact ? ({ ...this.impact }) : ({
+      running: {
+        transportation: [],
+      }
+    });
+    nextData.running.transportation.push({ miles, date: moment(datestring, 'YYYY-MM-DD').format(FORMAT) });
     this.impact = nextData;
     // TODO: Update localStorage
     this.updateValue();
@@ -114,6 +119,8 @@ class Tracker extends Component {
     this.setState({ period }, this.updateValue);
   };
 
+  hasEnoughData = () => this.impact && this.impact.running.transportation.length > 1;
+
   render() {
     return (
       <Container id="tracker">
@@ -127,10 +134,15 @@ class Tracker extends Component {
             <i className="fas fa-car fa-7x fa-center" />
           </Col>
         </Row>
+        <Row>
+          <Col>
+            <Odometer data={this.impact && this.impact.running.transportation[this.impact.running.transportation.length - 1]} />
+          </Col>
+        </Row>
 
-        <br />
-        {!this.state.noOldDate && this.impact ? ([
+        {!this.state.noOldDate && this.hasEnoughData() ? ([
           <PeriodPicker period={this.state.period} onChange={this.changePeriod} />,
+          <br />,
           <ProgressChart
             current={this.state.usedMiles}
             goal={
@@ -143,7 +155,7 @@ class Tracker extends Component {
         <br />
         <MileageInput updateTransportation={this.onNewMileage} />
 
-        {this.impact && ([
+        {this.hasEnoughData() && ([
           <Conversions
             miles={this.state.usedMiles}
             goal={this.state.goal}

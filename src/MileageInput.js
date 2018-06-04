@@ -8,7 +8,7 @@ export default class MileageInput extends Component {
     super(props);
     this.state = {
       miles: undefined,
-      date: moment().format("MM-DD-YYYY")
+      date: moment().format("YYYY-MM-DD"), // STRING
     };
   }
 
@@ -22,8 +22,9 @@ export default class MileageInput extends Component {
     this.setState({ miles: undefined });
   };
 
-  handleDateChange = date => {
-    this.setState({ date: date });
+  handleDateChange = event => {
+    console.log("date changed from, to: ", this.state.date, event.target.value )
+    this.setState({ date: event.target.value });
   };
 
   render() {
@@ -31,19 +32,26 @@ export default class MileageInput extends Component {
       <div>
         <Form onSubmit={this.handleSubmit}>
           <Row>
-            <Col sm="6">
-              <FormGroup>
-                <Input
-                  value={this.state.miles}
-                  onChange={this.handleChange}
-                  type="number"
-                  name="odometer"
-                  id="odometer"
-                  placeholder="Enter Your Current Odometer Reading"
-                />
-              </FormGroup>
+            <Col sm="4">
+              <Input
+                value={this.state.miles}
+                onChange={this.handleChange}
+                type="number"
+                name="odometer"
+                id="odometer"
+                placeholder="Odometer"
+              />
             </Col>
-            <Col sm="6">
+            <Col sm="4">
+              <Input
+                value={this.state.date}
+                onChange={this.handleDateChange}
+                type="date"
+                name="date"
+                id="date"
+              />
+            </Col>
+            <Col sm="4">
               <Button color="primary" block type="submit">
                 Submit
               </Button>
