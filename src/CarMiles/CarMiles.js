@@ -20,17 +20,42 @@ class CarMiles extends Component {
     nextOdometer: undefined,
   }
 
+  componentWillMount() {
+    this.loadStateFromLocalStorage();
+  }
+
+  loadStateFromLocalStorage = () => {
+    const goal = localStorage.getItem('car-annual-goal');
+    const dates = JSON.parse(localStorage.getItem('car-odometer-dates'));
+    const odometerReadings = JSON.parse(localStorage.getItem('car-odometer-values'));
+
+    if (
+      !goal
+      || !dates
+      || !odometerReadings
+      || !dates.length
+      || dates.length < 2
+      || !odometerReadings.length
+      || odometerReadings.length < 2
+    ) {
+      this.setState({needsSetup: true});
+    } else {
+      const nextState = { goal, dates, odometerReadings, needsSetup: false };
+      this.setState(nextState);
+    }
+  }
+
   onSetupComplete = (data) => {
-    console.log("Setup complete with data: ", data);
     const dates = [data.date1, data.date2];
     const odometerReadings = [data.odometer1, data.odometer2];
-    const nextState = { dates, odometerReadings, goal: data.goal, needsSetup: false };
-    this.setState(nextState);
+    localStorage.setItem('car-annual-goal', data.goal);
+    this.onHistoryChange(odometerReadings, dates)
   }
 
   onHistoryChange = (odometerReadings, dates) => {
-    console.log("submission received", odometerReadings);
-    this.setState({ odometerReadings, dates });
+    localStorage.setItem('car-odometer-values', JSON.stringify(odometerReadings));
+    localStorage.setItem('car-odometer-dates', JSON.stringify(dates))
+    this.loadStateFromLocalStorage();
   }
 
   render() {
