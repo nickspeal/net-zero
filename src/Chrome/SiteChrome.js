@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Container, Nav, NavItem, NavLink } from 'reactstrap';
+import { Container, Nav, NavItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import logo from '../images/logo.jpg';
 
 class SiteChrome extends Component {
@@ -8,14 +9,14 @@ class SiteChrome extends Component {
       <Container fluid>
         <Nav>
           <NavItem>
-            <NavLink href="/">
+            <Link to="/">
               <img src={logo} height={40} />
-            </NavLink>
+            </Link>
           </NavItem>
           <NavItem>
-            <NavLink href="/#/carmiles">
+            <Link to="/carmiles">
               Track your miles
-            </NavLink>
+            </Link>
           </NavItem>
         </Nav>
         {this.props.children}
