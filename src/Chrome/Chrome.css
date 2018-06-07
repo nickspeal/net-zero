@@ -1,0 +1,26 @@
+.button {
+  min-width: 200px;
+  background-color: rgba(255,255,255,0);
+  color: #64b3df;
+  border: 2px solid #64b3df;
+  border-radius: 4px;
+  height: 40px;
+  cursor: grab;
+}
+
+.button:hover {
+  background-color: #64b3df;
+  color: white;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.button-inverted {
+  background-color: rgba(255,255,255,0);
+  color: white;
+  border: 2px solid white;
+}

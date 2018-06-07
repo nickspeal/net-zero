@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Input } from 'reactstrap'
+import './Chrome.css';
 
 
 class OdometerInput extends Component {
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div className={`${this.props.className} input-container`}>
         <i className="fas fa-tachometer-alt fa-2x"></i>
         <Input
           value={this.props.value}

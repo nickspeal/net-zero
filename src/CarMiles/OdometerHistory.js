@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import moment from 'moment';
 import DateInput from '../Chrome/DateInput';
 import OdometerInput from '../Chrome/OdometerInput';
-import Button from '../Chrome/Button';
-
+import './CarMiles.css';
 
 class NewOdometerForm extends Component {
   state = {
     date: moment().format("YYYY-MM-DD"), // STRING
     odometer: '',
+    show: false,
   }
 
   onNextOdometerSubmit = () => {
@@ -30,21 +30,31 @@ class NewOdometerForm extends Component {
   }
 
   render() {
+    if (!this.state.show) {
+      return (
+        <a
+          onClick={() => this.setState({ show: true })}
+          style={{ cursor: 'grab '}}
+        >
+          Show Odometer History...
+        </a>
+      )
+    }
     return ([
       <table>
         <thead>
           <tr>
+            <td></td>
             <td>Date</td>
             <td>Odometer</td>
-            <td>Delete</td>
           </tr>
         </thead>
         <tbody>
           {this.props.odometerReadings.map((odom, index) => (
             <tr key={`${index}-${odom}`}>
+              <td><i className="fas fa-times-circle delete-button" onClick={() => this.removeEntry(index)}></i></td>
               <td>{this.props.dates[index]}</td>
               <td>{odom}</td>
-              <td><Button onClick={() => this.removeEntry(index)}>Delete</Button></td>
             </tr>
           ))}
         </tbody>

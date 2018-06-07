@@ -40,11 +40,14 @@ class CarMiles extends Component {
           <Setup onComplete={this.onSetupComplete} />
         ) : (
           <Row>
-            <Col sm="4">
+            <Col sm="6" className='center'>
+              <h2 className="title">Track Your Miles</h2>
+              <i className="fas fa-car fa-4x fa-center" />
               <OdometerDisplay odometerReadings={this.state.odometerReadings} dates={this.state.dates} />
               <NewOdometerForm odometerReadings={this.state.odometerReadings} dates={this.state.dates} onChange={this.onHistoryChange}/>
-              <OdometerHistory odometerReadings={this.state.odometerReadings} dates={this.state.dates} onChange={this.onHistoryChange}/>
+              <br />
               <HistoryViz odometerReadings={this.state.odometerReadings} dates={this.state.dates} goal={this.state.goal} />
+              <OdometerHistory odometerReadings={this.state.odometerReadings} dates={this.state.dates} onChange={this.onHistoryChange}/>
             </Col>
           </Row>
         )}
