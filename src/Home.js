@@ -41,7 +41,8 @@ class Home extends Component {
           </Row>
         </Row>
         <Row className="home-row alt-background">
-          <h3>Coming Soon: Measure your carbon footprint!</h3>
+          <h3>Your Personal Environmetal Health Portfolio</h3>
+          <h5>Coming Soon: Measure your carbon footprint!</h5>
         </Row>
         <Row className="home-row">
           <h3>More Resources</h3>
