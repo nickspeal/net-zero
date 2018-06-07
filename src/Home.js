@@ -46,16 +46,15 @@ class Home extends Component {
         </Row>
         <Row className="home-row">
           <h3>More Resources</h3>
-          <ul>
-            <li>Terrapass</li>
-            <li>OroEco</li>
-            <li>TheGoodTraveler.org</li>
-            <li>carbonfund</li>
-            <li>More...</li>
-            <li>More...</li>
-            <li>More...</li>
-            <li>More...</li>
-            <li>More...</li>
+          <ul style={{ textAlign: 'left' }}>
+            <li><a href="https://www.terrapass.com">TerraPass</a></li>
+            <li><a href="https://thegoodtraveler.org">The Good Traveler</a></li>
+            <li><a href="https://www.oroeco.com">OroEco</a></li>
+            <li><a href="https://carbonfund.org/">Carbon Fund</a></li>
+            <li><a href="https://www.carbonfootprint.com/">CarbonFootprint.com</a></li>
+            <li><a href="https://www.nature.org/greenliving/carboncalculator/">The Nature Conservency Carbon Footprint Calculator</a></li>
+            <li><a href="https://www3.epa.gov/carbon-footprint-calculator/">US Environmental Protection Agency Carbon Footprint Calculator</a></li>
+            <li><a href="https://www.conservation.org/act/carboncalculator/calculate-your-carbon-footprint.aspx#/">Conservation International Carbon Footprint Calculator</a></li>
           </ul>
         </Row>
       </SiteChrome>
