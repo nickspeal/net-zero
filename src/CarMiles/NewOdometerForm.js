@@ -8,11 +8,11 @@ import './CarMiles.css'
 class NewOdometerForm extends Component {
   state = {
     date: moment().format("YYYY-MM-DD"), // STRING
-    odometer: undefined,
+    odometer: undefined, // String
   }
 
   onNextOdometerSubmit = () => {
-    const odometer = Number(this.state.odometer); // Should aleady be a number from odometerInput, but can't hurt.
+    const odometer = Number(this.state.odometer);
     if (!isNaN(odometer) && odometer >= Math.max(...this.props.odometerReadings)) {
       const odometerReadings = [...this.props.odometerReadings, this.state.odometer];
       const dates = [...this.props.dates, this.state.date];
@@ -27,7 +27,7 @@ class NewOdometerForm extends Component {
   render() {
     return ([
       <DateInput date={this.state.date} onChange={(date) => this.setState({ date })} />,
-      <OdometerInput value={this.state.odometer} onChange={(odometer) => this.setState({ odometer })} />,
+      <OdometerInput value={this.state.odometer} onChange={(odometer) => this.setState({ odometer })} onEnterKey={this.onNextOdometerSubmit}/>,
       <Button onClick={this.onNextOdometerSubmit} className="button-inverted full-width">Submit a new reading</Button>,
     ]);
   }

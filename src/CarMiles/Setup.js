@@ -22,7 +22,10 @@ class Setup extends Component {
   }
 
   onComplete = () => {
-    const { date1, odometer1, date2, odometer2, goal } = this.state;
+    let { date1, odometer1, date2, odometer2, goal } = this.state;
+    odometer1 = Number(odometer1);
+    odometer2 = Number(odometer2);
+    goal = Number(goal)
     this.props.onComplete({ date1, odometer1, date2, odometer2, goal });
   }
 
@@ -41,7 +44,7 @@ class Setup extends Component {
             When did you buy your car and what was the approximate odometer reading at the time?
           </span>,
           <DateInput date={this.state.date1} onChange={(date1) => this.setState({ date1 })} className='top-margin' />,
-          <OdometerInput value={this.state.odometer1} onChange={(odometer1) => this.setState({ odometer1 })} />,
+          <OdometerInput value={this.state.odometer1} onChange={(odometer1) => this.setState({ odometer1 })} onEnterKey={this.incrementStep}/>,
           <Button onClick={this.incrementStep} className='top-margin'>Next</Button>,
         ]);
       case 2:
@@ -50,7 +53,7 @@ class Setup extends Component {
             Go check your odometer now. What does it say?
           </span>,
           <DateInput date={this.state.date2} onChange={(date2) => this.setState({ date2 })} className='top-margin' />,
-          <OdometerInput value={this.state.odometer2} onChange={(odometer2) => this.setState({ odometer2 })} />,
+          <OdometerInput value={this.state.odometer2} onChange={(odometer2) => this.setState({ odometer2 })} onEnterKey={this.incrementStep}/>,
           <Button onClick={this.incrementStep} className='top-margin'>Next</Button>,
         ]);
       case 3:
@@ -62,7 +65,7 @@ class Setup extends Component {
           <span>
             In the past {deltaTime} you drove an average of {milesPerYear} miles/year. The average American drives 13476 miles per year, for reference. Do you think you can do better? How many miles do you want to drive in the next year?
           </span>,
-          <OdometerInput value={this.state.goal} onChange={(goal) => this.setState({ goal })} className='top-margin' />,
+          <OdometerInput value={this.state.goal} onChange={(goal) => this.setState({ goal })} className='top-margin' onEnterKey={this.incrementStep}/>,
           <Button onClick={this.incrementStep} className='top-margin'>Next</Button>,
         ]);
       case 4:
