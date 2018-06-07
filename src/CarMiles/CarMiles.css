@@ -1,0 +1,27 @@
+.setup-card {
+  margin: 30%;
+  padding: 10%;
+  background-color: white;
+  border-radius: 16px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.odometer {
+  font-size: 60px;
+}
+
+.odometer-date {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.redtext {
+  color: red;
+}
+
+.greentext {
+  color: green;
+}
