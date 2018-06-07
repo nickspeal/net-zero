@@ -16,6 +16,22 @@ body {
   align-items: center;
 }
 
+.home-row {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 80px;
+  padding-right: 80px;
+  text-align: center;
+}
+
+.alt-background {
+  background-color: rgba(255,255,255,.8);
+  box-shadow: 0 10px 5px rgba(255,255,255,.8);
+}
+
 .menulist {
   list-style: none;
 }
@@ -92,4 +108,15 @@ td {
 
 .page-height {
   height: 100vh;
+}
+
+.annotation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 8pt;
+  color: white;
+  background-color: red;
+  border-radius: 4px;
+  padding: 0 8px;
 }

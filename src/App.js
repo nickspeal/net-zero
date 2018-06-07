@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/" component={Front} />
+          <Route exact path="/" component={Home} />
           <Route path="/profile" component={Profile} />
           <Route path="/mockdata" component={Mockdata} />
           <Route path="/tracker" component={Tracker} />

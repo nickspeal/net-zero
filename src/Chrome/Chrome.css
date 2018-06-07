@@ -1,3 +1,13 @@
+.nav {
+  background-color: rgba(255,255,255,.8);
+  box-shadow: 0 10px 50px white;
+}
+
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .button {
   min-width: 200px;
   background-color: rgba(255,255,255,0);
