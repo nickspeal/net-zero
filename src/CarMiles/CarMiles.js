@@ -18,7 +18,7 @@ class CarMiles extends Component {
     goal: undefined,
     nextDate: moment().format("YYYY-MM-DD"), // STRING
     nextOdometer: undefined,
-    activeTab: 1,
+    activeTab: '1',
   }
 
   componentWillMount() {
