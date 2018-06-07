@@ -26,10 +26,9 @@ class NewOdometerForm extends Component {
 
   render() {
     return ([
-      <span>New Odometer Reading:</span>,
       <DateInput date={this.state.date} onChange={(date) => this.setState({ date })} />,
       <OdometerInput value={this.state.odometer} onChange={(odometer) => this.setState({ odometer })} />,
-      <Button onClick={this.onNextOdometerSubmit} className="button-inverted full-width">Submit</Button>,
+      <Button onClick={this.onNextOdometerSubmit} className="button-inverted full-width">Submit a new reading</Button>,
     ]);
   }
 }

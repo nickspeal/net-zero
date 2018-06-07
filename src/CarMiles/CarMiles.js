@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Nav, NavItem, NavLink, TabPane, TabContent } from "reactstrap";
 import moment from 'moment';
 import SiteChrome from '../Chrome/SiteChrome';
 import Setup from './Setup';
@@ -8,7 +8,7 @@ import NewOdometerForm from './NewOdometerForm';
 import OdometerHistory from './OdometerHistory';
 import HistoryViz from './HistoryViz';
 import Button from '../Chrome/Button';
-
+import classnames from 'classnames';
 
 class CarMiles extends Component {
   state = {
@@ -18,6 +18,7 @@ class CarMiles extends Component {
     goal: undefined,
     nextDate: moment().format("YYYY-MM-DD"), // STRING
     nextOdometer: undefined,
+    activeTab: 1,
   }
 
   componentWillMount() {
@@ -58,6 +59,11 @@ class CarMiles extends Component {
     this.loadStateFromLocalStorage();
   }
 
+  toggle = tab => {
+    this.setState({ activeTab: tab });
+  }
+
+
   render() {
     return (
       <SiteChrome>
@@ -65,14 +71,46 @@ class CarMiles extends Component {
           <Setup onComplete={this.onSetupComplete} />
         ) : (
           <Row>
-            <Col sm="6" className='center'>
-              <h2 className="title">Track Your Miles</h2>
-              <i className="fas fa-car fa-4x fa-center" />
-              <OdometerDisplay odometerReadings={this.state.odometerReadings} dates={this.state.dates} />
-              <NewOdometerForm odometerReadings={this.state.odometerReadings} dates={this.state.dates} onChange={this.onHistoryChange}/>
-              <br />
-              <HistoryViz odometerReadings={this.state.odometerReadings} dates={this.state.dates} goal={this.state.goal} />
-              <OdometerHistory odometerReadings={this.state.odometerReadings} dates={this.state.dates} onChange={this.onHistoryChange}/>
+            <Col className='center'>
+              <Nav tabs>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === '1' })}
+                    onClick={() => { this.toggle('1'); }}
+                  >
+                    Odometer
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === '2' })}
+                    onClick={() => { this.toggle('2'); }}
+                  >
+                    Odometer History
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: this.state.activeTab === '3' })}
+                    onClick={() => { this.toggle('3'); }}
+                  >
+                    Weekly Mileage
+                  </NavLink>
+                </NavItem>
+              </Nav>
+              <TabContent activeTab={this.state.activeTab}>
+                <TabPane tabId="1">
+                  <OdometerDisplay odometerReadings={this.state.odometerReadings} dates={this.state.dates} />
+                  <NewOdometerForm odometerReadings={this.state.odometerReadings} dates={this.state.dates} onChange={this.onHistoryChange}/>
+                </TabPane>
+                <TabPane tabId="2">
+                  <OdometerDisplay odometerReadings={this.state.odometerReadings} dates={this.state.dates} />
+                  <OdometerHistory odometerReadings={this.state.odometerReadings} dates={this.state.dates} onChange={this.onHistoryChange}/>
+                </TabPane>
+                <TabPane tabId="3">
+                  <HistoryViz odometerReadings={this.state.odometerReadings} dates={this.state.dates} goal={this.state.goal} />
+                </TabPane>
+              </TabContent>
             </Col>
           </Row>
         )}

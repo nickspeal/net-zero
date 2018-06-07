@@ -38,6 +38,7 @@
   flex-direction: column;
   margin: auto;
   align-items: center;
+  max-width: 500px;
 }
 
 .delete-button {

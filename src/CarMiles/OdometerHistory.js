@@ -4,28 +4,16 @@ import DateInput from '../Chrome/DateInput';
 import OdometerInput from '../Chrome/OdometerInput';
 import './CarMiles.css';
 
-class NewOdometerForm extends Component {
+class OdometerHistory extends Component {
   state = {
-    date: moment().format("YYYY-MM-DD"), // STRING
-    odometer: '',
-    show: false,
-  }
-
-  onNextOdometerSubmit = () => {
-    const odometerReadings = [...this.props.odometerReadings, this.state.odometer];
-    const dates = [...this.props.dates, this.state.date];
-    this.setState({ odometer: '' });
-    this.props.onChange(odometerReadings, dates);
+    show: true,
   }
 
   removeEntry = (idx) => {
-    console.log("asked to delete entry #", idx)
-    console.log("old readings", this.props.odometerReadings)
     const nextOdometerReadings = [...this.props.odometerReadings];
     const nextDates = [...this.props.dates];
     nextOdometerReadings.splice(idx, 1);
     nextDates.splice(idx, 1)
-    console.log("nextreadings: ", nextOdometerReadings);
     this.props.onChange(nextOdometerReadings, nextDates);
   }
 
@@ -63,4 +51,4 @@ class NewOdometerForm extends Component {
   }
 }
 
-export default NewOdometerForm;
+export default OdometerHistory;
