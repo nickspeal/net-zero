@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import Mockdata from "./Mockdata";
 import Tracker from "./Tracker";
 import CarMiles from './CarMiles/CarMiles';
+import fourohfour from './404.js';
 import "./newLayout.css";
 import "./App.css";
 
@@ -26,6 +27,7 @@ class App extends Component {
           <Route path="/profile" component={Profile} />
           <Route path="/mockdata" component={Mockdata} />
           <Route path="/tracker" component={Tracker} />
+          <Route component={fourohfour} />
         </Switch>
       </Router>
     );
