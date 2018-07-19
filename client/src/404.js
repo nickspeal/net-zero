@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row } from 'reactstrap';
 import {
   Link
 } from 'react-router-dom';
 import SiteChrome from './Chrome/SiteChrome';
 import './App.css';
 
-const ICON_SIZE = 'fa-9x';
-
-class Home extends Component {
+class fourohfour extends Component {
   render() {
     return (
       <SiteChrome>
@@ -20,4 +18,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default fourohfour;
