@@ -14,10 +14,18 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/carmiles" component={CarMiles} />
+
+          {/*
+            These pages are an old legacy from the original hackathon MVP.
+            Keep them around for now just in case their visualization logic is useful
+            In order to make them work, first load mock data into localStorage by navigating to the /mockdata page
+            Then go to /tracker to view the pretty stuff
+            /profile also exists but isn't much visually. There might be some good code in there to take.
+          */}
           <Route path="/profile" component={Profile} />
           <Route path="/mockdata" component={Mockdata} />
           <Route path="/tracker" component={Tracker} />
-          <Route path="/carmiles" component={CarMiles} />
         </Switch>
       </Router>
     );
