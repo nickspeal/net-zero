@@ -1,32 +1,26 @@
 {
   "name": "net-zero",
   "version": "0.1.0",
-  "private": true,
-  "homepage": "http://www.speal.ca/net-zero",
-  "dependencies": {
-    "bootstrap": "^4.1.1",
-    "highcharts": "^6.1.0",
-    "highcharts-react-official": "^1.1.0",
-    "moment": "^2.22.2",
-    "odometer": "^0.4.8",
-    "react": "^16.4.0",
-    "react-chartjs": "^1.2.0",
-    "react-dom": "^16.4.0",
-    "react-odometerjs": "^2.0.0",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
-    "reactstrap": "^6.0.1"
-  },
+  "description": "Measure your carbon footprint so that you can manage it!",
+  "main": "server/index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "start": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "gh-pages": "^1.2.0"
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nickspeal/net-zero.git"
+  },
+  "author": "Nick Speal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nickspeal/net-zero/issues"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
   }
 }

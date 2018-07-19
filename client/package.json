@@ -1,0 +1,32 @@
+{
+  "name": "net-zero-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.1.1",
+    "highcharts": "^6.1.0",
+    "highcharts-react-official": "^1.1.0",
+    "moment": "^2.22.2",
+    "odometer": "^0.4.8",
+    "react": "^16.4.0",
+    "react-chartjs": "^1.2.0",
+    "react-dom": "^16.4.0",
+    "react-odometerjs": "^2.0.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "reactstrap": "^6.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "gh-pages": "^1.2.0"
+  },
+  "proxy": "http://localhost:5000"
+}
