@@ -9,9 +9,10 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 // Answer API requests.
-app.get('/api', function (req, res) {
+app.all('/api/*', function (req, res) {
+  console.log('Handling request from URL: ', req.url);
   res.set('Content-Type', 'application/json');
-  res.send('{"message":"Hello from the custom server!"}');
+  res.send(`{"message":"Hello from the custom server!", "url":"${req.url}"}`);
 });
 
 // All remaining requests return the React app, so it can handle routing.

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Nav, NavItem, NavLink, TabPane, TabContent } from "reactstrap";
 import moment from 'moment';
+import API from '../api/api.js'
 import SiteChrome from '../Chrome/SiteChrome';
 import Setup from './Setup';
 import OdometerDisplay from './OdometerDisplay';
@@ -54,6 +55,9 @@ class CarMiles extends Component {
   }
 
   onHistoryChange = (odometerReadings, dates) => {
+    API.updateHistory(odometerReadings.map(
+      (o,i) => ({ odometer: o, date: dates[i] })
+    ));
     localStorage.setItem('car-odometer-values', JSON.stringify(odometerReadings));
     localStorage.setItem('car-odometer-dates', JSON.stringify(dates))
     this.loadStateFromLocalStorage();
