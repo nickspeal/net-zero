@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import data from './mockdata.json';
 
-class Mockdata extends Component {
+class Mockdata extends React.Component {
   componentWillMount() {
     Object.keys(data).forEach(key => {
       console.log(`Setting key: ${key} value: ${JSON.stringify(data[key])}`);

@@ -8,7 +8,6 @@ import OdometerDisplay from './OdometerDisplay';
 import NewOdometerForm from './NewOdometerForm';
 import OdometerHistory from './OdometerHistory';
 import HistoryViz from './HistoryViz';
-import Button from '../Chrome/Button';
 import classnames from 'classnames';
 
 class CarMiles extends Component {

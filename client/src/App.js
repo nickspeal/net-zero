@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import Profile from "./Profile";
 import Mockdata from "./Mockdata";
 import Tracker from "./Tracker";
-import Front from "./Front";
 import CarMiles from './CarMiles/CarMiles';
-
+import "./newLayout.css";
 import "./App.css";
 
 class App extends Component {

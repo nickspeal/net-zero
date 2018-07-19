@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import {
-  Link
-} from 'react-router-dom'
-// import {
-//   Line
-// } from 'react-chartjs';
 const FORMAT = 'MM-DD-YYYY';
 const PERIOD_CONVERSION = {
   'weekly': 7,

@@ -39,10 +39,6 @@ function transformedData(current, goal) {
 }
 
 export default class ProgressChart extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>

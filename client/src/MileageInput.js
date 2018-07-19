@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
-import { Button, Form, FormGroup, Label, Input, jjFormText } from "reactstrap";
+import { Row, Col } from "reactstrap";
+import { Button, Form, Input } from "reactstrap";
 import moment from "moment";
 
 export default class MileageInput extends Component {
@@ -13,7 +13,7 @@ export default class MileageInput extends Component {
   }
 
   handleChange = event => {
-    this.setState({ miles: parseInt(event.target.value) });
+    this.setState({ miles: parseInt(event.target.value, 10) });
   };
 
   handleSubmit = event => {

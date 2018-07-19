@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { CardGroup } from "reactstrap";
 const options = {
   title: {
     text: "Your mileage"

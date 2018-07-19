@@ -5,7 +5,7 @@ import './Chrome.css';
 
 class OdometerInput extends Component {
   onKeyPress = e => {
-    if (e.key == 'Enter') {
+    if (e.key === 'Enter') {
       this.props.onEnterKey();
     }
   }

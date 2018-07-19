@@ -10,7 +10,7 @@ class SiteChrome extends Component {
         <Nav>
           <NavItem>
             <Link to="/">
-              <img src={logo} height={40} />
+              <img src={logo} height={40} alt="logo" />
             </Link>
           </NavItem>
           <NavItem>

@@ -25,18 +25,18 @@ class Home extends Component {
           <Row>
             <Col style={{ position: 'relative' }}>
               <span className="annotation">Click Here!</span>
-              <Link to="/carmiles"><i class={`fas fa-car ${ICON_SIZE}`}></i></Link>
+              <Link to="/carmiles"><i className={`fas fa-car ${ICON_SIZE}`}></i></Link>
             </Col>
             <Col>
-              <Link to="#"><i class={`fas fa-bolt ${ICON_SIZE}`}></i></Link>
+              <Link to="#"><i className={`fas fa-bolt ${ICON_SIZE}`}></i></Link>
             </Col>
           </Row>
           <Row>
             <Col>
-              <Link to="#"><i class={`fas fa-recycle ${ICON_SIZE}`}></i></Link>
+              <Link to="#"><i className={`fas fa-recycle ${ICON_SIZE}`}></i></Link>
             </Col>
             <Col>
-              <Link to="#"><i class={`fas fa-utensils ${ICON_SIZE}`}></i></Link>
+              <Link to="#"><i className={`fas fa-utensils ${ICON_SIZE}`}></i></Link>
             </Col>
           </Row>
         </Row>
@@ -47,15 +47,15 @@ class Home extends Component {
         <Row className="home-row">
           <h3>More Resources</h3>
           <ul style={{ textAlign: 'left' }}>
-            <li><a href="https://chooose.today/" target="_blank">Chooose.today:</a> A Norwegian initiative to buy up emissions quotas so that big polluters can't</li>
-            <li><a href="https://www.terrapass.com" target="_blank">TerraPass:</a> A San Francisco-based company that lets you fund projects that reduce CO2 emissions</li>
-            <li><a href="https://thegoodtraveler.org" target="_blank">The Good Traveler:</a> A San Diego-based company that lets you fund projects that reduce CO2 emissions</li>
-            <li><a href="https://carbonfund.org/" target="_blank">Carbon Fund</a></li>
-            <li><a href="https://www.carbonfootprint.com/" target="_blank">CarbonFootprint.com</a></li>
-            <li><a href="https://www.nature.org/greenliving/carboncalculator/" target="_blank">The Nature Conservency Carbon Footprint Calculator</a></li>
-            <li><a href="https://www3.epa.gov/carbon-footprint-calculator/" target="_blank">US Environmental Protection Agency Carbon Footprint Calculator</a></li>
-            <li><a href="https://www.conservation.org/act/carboncalculator/calculate-your-carbon-footprint.aspx#/" target="_blank">Conservation International Carbon Footprint Calculator</a></li>
-            <li><a href="https://www.oroeco.com" target="_blank">OroEco:</a> An app that helps you track your carbon footprint. I've seen several cases of it not functioning correctly, however.</li>
+            <li><a href="https://chooose.today/" target="_blank" rel="noopener noreferrer">Chooose.today:</a> A Norwegian initiative to buy up emissions quotas so that big polluters can't</li>
+            <li><a href="https://www.terrapass.com" target="_blank" rel="noopener noreferrer">TerraPass:</a> A San Francisco-based company that lets you fund projects that reduce CO2 emissions</li>
+            <li><a href="https://thegoodtraveler.org" target="_blank" rel="noopener noreferrer">The Good Traveler:</a> A San Diego-based company that lets you fund projects that reduce CO2 emissions</li>
+            <li><a href="https://carbonfund.org/" target="_blank" rel="noopener noreferrer">Carbon Fund</a></li>
+            <li><a href="https://www.carbonfootprint.com/" target="_blank" rel="noopener noreferrer">CarbonFootprint.com</a></li>
+            <li><a href="https://www.nature.org/greenliving/carboncalculator/" target="_blank" rel="noopener noreferrer">The Nature Conservency Carbon Footprint Calculator</a></li>
+            <li><a href="https://www3.epa.gov/carbon-footprint-calculator/" target="_blank" rel="noopener noreferrer">US Environmental Protection Agency Carbon Footprint Calculator</a></li>
+            <li><a href="https://www.conservation.org/act/carboncalculator/calculate-your-carbon-footprint.aspx#/" target="_blank" rel="noopener noreferrer">Conservation International Carbon Footprint Calculator</a></li>
+            <li><a href="https://www.oroeco.com" target="_blank" rel="noopener noreferrer">OroEco:</a> An app that helps you track your carbon footprint. I've seen several cases of it not functioning correctly, however.</li>
           </ul>
         </Row>
       </SiteChrome>

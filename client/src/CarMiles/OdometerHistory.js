@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import moment from 'moment';
-import DateInput from '../Chrome/DateInput';
 import './CarMiles.css';
 
 class OdometerHistory extends Component {
