@@ -9,10 +9,10 @@ resources_bp = Blueprint('resources_bp', __name__, url_prefix='/api/resource')
 
 @resources_bp.route('/create', methods=['POST'])
 def create():
-    name = request.form.get('name')
+    name = request.json.get('name')
     print("Creating vehicle with name ", name)
-    mpg = float(request.form.get('mpg'))
-    campaign_id = request.form.get('campaign')
+    mpg = float(request.json.get('mpg'))
+    campaign_id = request.json.get('campaign')
     
     # Convert MPG to L/100KM
     GAL_PER_L = 0.2641729
@@ -52,8 +52,8 @@ def get(id):
 
 @resources_bp.route('/<id>/history', methods=['POST'])
 def append_to_history(id):
-    date = datetime.strptime(request.form.get('date'), DATE_FORMAT_ISO8061)
-    value = request.form.get('value')
+    date = datetime.strptime(request.json.get('date'), DATE_FORMAT_ISO8061)
+    value = request.json.get('value')
     history_item = models.ResourceMeasurement(
         date=date,
         value=value,

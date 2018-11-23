@@ -7,8 +7,8 @@ campaign_bp = Blueprint('campaign_bp', __name__, url_prefix='/api/campaign')
 
 @campaign_bp.route('/create', methods=['POST'])
 def create():
-    username = request.form.get('username')
-    name = request.form.get('name')
+    username = request.json.get('username')
+    name = request.json.get('name')
     print("Creating campaign with name ", name)
     try:
         campaign = models.Campaign(

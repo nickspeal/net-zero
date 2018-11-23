@@ -9,7 +9,7 @@ user_bp = Blueprint('user_bp', __name__, url_prefix='/api/user')
 def signup():
     try:
         user = models.User(
-            username=request.form.get('username'),
+            username=request.json.get('username'),
         )
         # Insert the user in the database
         db.session.add(user)
@@ -20,7 +20,7 @@ def signup():
 
 @user_bp.route('/login', methods=['POST'])
 def login():
-    models.User.query.filter_by(username=request.form.get('username')).first_or_404()
+    models.User.query.filter_by(username=request.json.get('username')).first_or_404()
     return 'OK', 200
 
 @user_bp.route('/<username>', methods=['GET'])
