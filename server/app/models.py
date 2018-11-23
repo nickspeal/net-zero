@@ -1,4 +1,9 @@
 from app import db
+import json
+from flask import jsonify
+from datetime import datetime
+
+DATE_FORMAT_ISO8061 = '%Y%m%dT%H%M%SZ'  # YYYYMMDDThhmmssZ ISO 8061
 
 # Junction Tables for many-to-many relationships
 campaign_users = db.Table('campaign_users',
@@ -29,6 +34,16 @@ class Campaign(db.Model):
     def __repr__(self):
         return '<Campaign {}>'.format(self.name)
 
+    def jsonify(self):
+        campaign_dict = {
+            'id': self.id,
+            'name': self.name,
+            'offsets_available': self.offsets_available,
+            'users': [u.username for u in self.users],
+            'vehicles': [{ 'name': v.name, 'id': v.id } for v in self.vehicles],
+        }
+        return jsonify(campaign_dict)
+
 
 class User(db.Model):
     ''' A person with an account
@@ -39,6 +54,16 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
+    
+    def jsonify(self):
+        user_dict = {
+            'username': self.username,
+            'campaigns': [{
+                'id': c.id,
+                'name': c.name
+            } for c in self.campaigns]
+        }
+        return jsonify(user_dict)
 
 
 class Vehicle(db.Model):
@@ -72,6 +97,22 @@ class Vehicle(db.Model):
 
     def __repr__(self):
         return '<Vehicle {}>'.format(self.id)
+    
+    def jsonify(self):
+        history = ResourceMeasurement.query.filter_by(resource=self.id)
+        vehicle_dict = {
+            'id': self.id,
+            'name': self.name,
+            'carbon_per_unit': self.get_carbon_per_unit(),
+            'units': self.units,
+            'notes': self.notes,
+            'fuel_l_per_100km': self.fuel_l_per_100km,
+            'carbon_to_manufacture': self.carbon_to_manufacture,
+            'expected_life_km': self.expected_life_km,
+            'campaigns': [{ 'id': c.id, 'name':c.name } for c in self.campaigns],
+            'history': [{ 'date': datetime.strftime(h.date, DATE_FORMAT_ISO8061), 'value': h.value } for h in history]
+        }
+        return jsonify(vehicle_dict)
 
 
 

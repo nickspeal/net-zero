@@ -3,7 +3,7 @@ from app import app, models, db
 from sqlalchemy.exc import IntegrityError
 from datetime import datetime
 
-DATE_FORMAT_ISO8061 = '%Y%m%dT%H%M%SZ'  # YYYYMMDDThhmmssZ ISO 8061
+
 
 resources_bp = Blueprint('resources_bp', __name__, url_prefix='/api/resource')
 
@@ -29,36 +29,23 @@ def create():
 
     db.session.add(vehicle)
     db.session.commit()
-    return 'Created', 201
+    return vehicle.jsonify(), 201
 
 @resources_bp.route('/<id>', methods=['GET'])
 def get(id):
     vehicle = models.Vehicle.query.filter_by(id=id).first_or_404()
-    history = models.ResourceMeasurement.query.filter_by(resource=vehicle.id)
-    vehicle_dict = {
-        'id': vehicle.id,
-        'name': vehicle.name,
-        'carbon_per_unit': vehicle.get_carbon_per_unit(),
-        'units': vehicle.units,
-        'notes': vehicle.notes,
-        'fuel_l_per_100km': vehicle.fuel_l_per_100km,
-        'carbon_to_manufacture': vehicle.carbon_to_manufacture,
-        'expected_life_km': vehicle.expected_life_km,
-        'campaigns': [{ 'id': c.id, 'name':c.name } for c in vehicle.campaigns],
-        'history': [{ 'date': datetime.strftime(h.date, DATE_FORMAT_ISO8061), 'value': h.value } for h in history]
-    }
-
-    return jsonify(vehicle_dict)
+    return vehicle.jsonify()
 
 @resources_bp.route('/<id>/history', methods=['POST'])
 def append_to_history(id):
-    date = datetime.strptime(request.json.get('date'), DATE_FORMAT_ISO8061)
+    date = datetime.strptime(request.json.get('date'), models.DATE_FORMAT_ISO8061)
     value = request.json.get('value')
     history_item = models.ResourceMeasurement(
         date=date,
         value=value,
         resource=id,
     )
+    vehicle = models.Vehicle.query.filter_by(id=id).first_or_404()
     db.session.add(history_item)
     db.session.commit()
-    return 'Created', 201
+    return vehicle.jsonify(), 201

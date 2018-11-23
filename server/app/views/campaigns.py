@@ -20,7 +20,7 @@ def create():
         
         db.session.add(campaign)
         db.session.commit()
-        return 'Created', 201
+        return campaign.jsonify(), 201
     except IntegrityError:
         return 'Name Taken', 400
 
@@ -28,12 +28,4 @@ def create():
 def get(id):
     
     campaign = models.Campaign.query.filter_by(id=id).first_or_404()
-    campaign_dict = {
-        'id': campaign.id,
-        'name': campaign.name,
-        'offsets_available': campaign.offsets_available,
-        'users': [u.username for u in campaign.users],
-        'vehicles': [v.name for v in campaign.vehicles]
-    }
-
-    return jsonify(campaign_dict)
+    return campaign.jsonify()
