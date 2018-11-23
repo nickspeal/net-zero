@@ -2,23 +2,25 @@
 
 Measure your carbon footprint so that you can manage it!
 
-
-## How to Run the App for Development
+## How to Run the Client App for Development
 
 * Run the frontend in a development server on port 3000: `cd client && npm run start`
 * This way the BrowserRouter handles almost all urls
-* A proxy route for `/api` is specified in package.json. All requests to this route are forwarded to port 5000 to be handled by the Node server
-* Run the node server: `npm run start`
-* The node server now handles requests to the `/api` endpoint
-* Navigate the browser to localhost:3000 and observe that the client handles requests to all endpoints eccept `/api`. Notice that the node server handles requests to `/api`.
 
-## How to run for "Production"
+## How to Run the Backend for Development
 
-* This isn't really production yet, but it no longer uses the create-react-app development server
-* Build the client into static files in the `client/build` directory: `cd client && npm run build`
-* Run the node server: `npm run start`
-* Navigate the browser to localhost:5000 (different port this time!)
-* Observe that all requests are handled by the only server that is running.
-* Requests to `/gibberish` get index.html as a response
-* Requests to `/api` are handled by express
-* Requests for static assets (i.e. css requested by the client from index.html) are handled by the express static middleware
+* From the server directory:
+    * In a virtualenv, `pip install -r requirements.txt`
+    * If you want to throw away old data or create a new empty database, `python reset_db.py`
+    * `flask run`
+
+## Data Model
+
+* The data model is centered around campaigns: An effort to track net carbon footprint within some context.
+* One context is a user. There is a personal campaign for each user, to track that user's individual footprint
+* There are also group campaigns that have multiple users, i.e. for a group to track the footprint of a shared activity
+* Each resource and consumption can be associated with multiple campaigns
+* All of the above relationships are many-to-many
+* An offset, once purchased, can be applied towards a single campaign (thus each offset has a single associated campaign id)
+* Each consumption has an isOffset flag, which can be set by subtracting from the campaign's availableToOffset reserve.
+* Resources should be able to be offset on time ranges from campaigns, TBD how.

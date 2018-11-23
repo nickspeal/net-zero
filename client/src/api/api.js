@@ -13,4 +13,16 @@ const updateHistory = (data) => {
   })
 };
 
-module.exports = { updateHistory };
+const signup = (username, password) => {
+  console.log("Signup called for user", username);
+  const endpoint = 'signup';
+  return fetch(`${BASE_URL}/${endpoint}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify({ username, password }),
+  })
+}
+
+module.exports = { updateHistory, signup };

@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./Home";
+import Login from './auth/Login.js';
+import CarMiles from './CarMiles/CarMiles';
+
 import Profile from "./Profile";
 import Mockdata from "./Mockdata";
 import Tracker from "./Tracker";
-import CarMiles from './CarMiles/CarMiles';
 import fourohfour from './404.js';
+
 import "./newLayout.css";
 import "./App.css";
 
@@ -15,6 +18,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
           <Route path="/carmiles" component={CarMiles} />
 
           {/*

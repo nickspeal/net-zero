@@ -16,6 +16,16 @@ body {
   align-items: center;
 }
 
+.nav-item {
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.pull-right {
+  margin-left: auto;
+}
+
 .home-row {
   min-height: 500px;
   display: flex;
@@ -41,17 +51,6 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-
-.menubar {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 10;
-  height: 100vh;
-  width: 200px;
 }
 
 td {
