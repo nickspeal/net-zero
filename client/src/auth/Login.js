@@ -9,23 +9,34 @@ class Login extends Component {
     formType: 'signup',
   }
 
+  onLoginSuccess = (response) => {
+    if (response.status <= 201) {
+      response.json().then(user => {
+        localStorage.setItem('username', user.username)
+        localStorage.setItem('campaign', user.campaigns && user.campaigns[0].id)
+        window.location = '/';
+      });
+    } else {
+      response.text().then(alert);
+      console.error(response);
+    }
+  }
+
   handleSignUp = () => {
     const email = document.getElementById('email').value;
     const pw1 = document.getElementById('password1').value;
     const pw2 = document.getElementById('password2').value;
-    console.log(pw1, pw2);
     if (pw1 !== pw2) {
-      console.error("PWs dont match");
+      alert("PWs dont match");
     } else {
-      API.signup(email, pw1).then( () => {
-        console.log("Signup success. TODO redirect home.")
-        window.location.push('/');
-      })
+      API.signup(email, pw1).then(this.onLoginSuccess).catch(console.error)
     }
   }
 
   handleSignIn = () => {
-    console.log("todo sign in");
+    const email = document.getElementById('email').value;
+    const pw = document.getElementById('password3').value;
+    API.login(email, pw).then(this.onLoginSuccess).catch(console.error)
   }
 
   renderSignUpForm = () => (
@@ -48,12 +59,16 @@ class Login extends Component {
             name="password1"
             id="password1"
             placeholder="Password"
+            disabled
+            title="Coming Soon... For now this account is not password protected"
           />
           <Input
             type="password"
             name="password2"
             id="password2"
             placeholder="Confirm Password"
+            disabled
+            title="Coming Soon... For now this account is not password protected"
           />
           <Button color="primary" block onClick={this.handleSignUp}>
             Sign Up
@@ -79,9 +94,11 @@ class Login extends Component {
           />
           <Input
             type="password"
-            name="password1"
-            id="password1"
+            name="password3"
+            id="password3"
             placeholder="Password"
+            disabled
+            title="Coming Soon... For now this account is not password protected"
           />
           <Button color="primary" block onClick={this.handleSignIn}>
             Sign In
