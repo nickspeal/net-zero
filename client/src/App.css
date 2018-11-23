@@ -79,6 +79,11 @@ td {
   background: #c62828;
 }
 
+.login-form {
+  min-width: 50%;
+
+}
+
 #tracker h4 {
   padding: 0.5rem;
   text-align: center;

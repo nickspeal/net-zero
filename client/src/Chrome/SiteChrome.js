@@ -5,6 +5,22 @@ import logo from '../images/logo.jpg';
 import '../App.css';
 
 class SiteChrome extends Component {
+  state = {
+    isLoggedIn: false,
+  }
+
+  componentWillMount() {
+    const isLoggedIn = !!localStorage.getItem('username') && !!localStorage.getItem('campaign');
+    this.setState({ isLoggedIn });
+  }
+
+  logout = () => {
+    console.log("logout")
+    localStorage.removeItem('username');
+    localStorage.removeItem('campaign');
+    this.setState({ isLoggedIn: false });
+  }
+
   render() {
     return (
       <Container fluid>
@@ -20,9 +36,16 @@ class SiteChrome extends Component {
             </Link>
           </NavItem>
           <NavItem className="pull-right">
-            <Link to="/login">
-              Login
-            </Link>
+            { this.state.isLoggedIn ? (
+              <a href='#' onClick={this.logout}>
+                Log Out
+              </a>
+            ) : (
+              <Link to="/login">
+                Login
+              </Link>
+            )}
+            
           </NavItem>
         </Nav>
         {this.props.children}

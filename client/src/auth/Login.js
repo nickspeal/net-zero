@@ -40,71 +40,71 @@ class Login extends Component {
   }
 
   renderSignUpForm = () => (
-    <Form>
-      <Button color="secondary" disabled onClick={() => this.setState({ formType: 'signup' })}>
-        Sign Up
-      </Button>
-      <Button color="primary" onClick={() => this.setState({ formType: 'signin' })}>
-        Sign In
-      </Button>
-        <Col sm="12">
-          <Input
-            type="text"
-            name="email"
-            id="email"
-            placeholder="Email Address"
-          />
-          <Input
-            type="password"
-            name="password1"
-            id="password1"
-            placeholder="Password"
-            disabled
-            title="Coming Soon... For now this account is not password protected"
-          />
-          <Input
-            type="password"
-            name="password2"
-            id="password2"
-            placeholder="Confirm Password"
-            disabled
-            title="Coming Soon... For now this account is not password protected"
-          />
-          <Button color="primary" block onClick={this.handleSignUp}>
-            Sign Up
-          </Button>
-        </Col>
-    </Form>
+    <Col className="center login-form">
+      <Form className="login-form">
+        <Button color="secondary" disabled onClick={() => this.setState({ formType: 'signup' })}>
+          Sign Up
+        </Button>
+        <Button color="primary" onClick={() => this.setState({ formType: 'signin' })}>
+          Sign In
+        </Button>
+            <Input
+              type="text"
+              name="email"
+              id="email"
+              placeholder="Email Address"
+            />
+            <Input
+              type="password"
+              name="password1"
+              id="password1"
+              placeholder="Password"
+              disabled
+              title="Coming Soon... For now this account is not password protected"
+            />
+            <Input
+              type="password"
+              name="password2"
+              id="password2"
+              placeholder="Confirm Password"
+              disabled
+              title="Coming Soon... For now this account is not password protected"
+            />
+            <Button color="primary" block onClick={this.handleSignUp}>
+              Sign Up
+            </Button>
+      </Form>
+    </Col>
   )
 
   renderSignInForm = () => (
-    <Form>
-      <Button color="primary" onClick={() => this.setState({ formType: 'signup' })}>
-        Sign Up
-      </Button>
-      <Button color="secondary" onClick={() => this.setState({ formType: 'signin' })}>
-        Sign In
-      </Button>
-        <Col sm="12">
-          <Input
-            type="text"
-            name="email"
-            id="email"
-            placeholder="Email Address"
-          />
-          <Input
-            type="password"
-            name="password3"
-            id="password3"
-            placeholder="Password"
-            disabled
-            title="Coming Soon... For now this account is not password protected"
-          />
-          <Button color="primary" block onClick={this.handleSignIn}>
-            Sign In
-          </Button>
-        </Col>
-    </Form>
+    <Col className="center login-form">
+      <Form className="login-form">
+        <Button color="primary" onClick={() => this.setState({ formType: 'signup' })}>
+          Sign Up
+        </Button>
+        <Button color="secondary" onClick={() => this.setState({ formType: 'signin' })}>
+          Sign In
+        </Button>
+        <Input
+          type="text"
+          name="email"
+          id="email"
+          placeholder="Email Address"
+        />
+        <Input
+          type="password"
+          name="password3"
+          id="password3"
+          placeholder="Password"
+          disabled
+          title="Coming Soon... For now this account is not password protected"
+        />
+        <Button color="primary" block onClick={this.handleSignIn}>
+          Sign In
+        </Button>
+      </Form>
+    </Col> 
   )
 
   render() {
