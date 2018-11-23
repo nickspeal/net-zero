@@ -1,11 +1,10 @@
 // API for the Net Zero backend
 const BASE_URL = `http://localhost:5000/api`;
 
-const updateHistory = (data) => {
+const updateHistory = (vehicleId, data) => {
   console.log("updateHistory called with data", data);
-  const endpoint = 'odometer';
-  return fetch(`${BASE_URL}/${endpoint}`, {
-    method: 'PUT',
+  return fetch(`${BASE_URL}/resource/${vehicleId}/history`, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8'
     },
@@ -39,4 +38,19 @@ const login = (username, password = null) => {
   })
 }
 
-module.exports = { updateHistory, signup, login };
+const getCampaign = (id) => {
+  return fetch(`${BASE_URL}/campaign/${ id }`)
+}
+
+const getVehicle = (id) => {
+  return fetch(`${BASE_URL}/resource/${id}`)
+}
+
+
+module.exports = {
+  updateHistory,
+  signup,
+  login,
+  getCampaign,
+  getVehicle,
+};

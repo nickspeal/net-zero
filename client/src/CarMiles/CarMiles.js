@@ -19,47 +19,62 @@ class CarMiles extends Component {
     nextDate: moment().format("YYYY-MM-DD"), // STRING
     nextOdometer: undefined,
     activeTab: '1',
+    vehicles: undefined,
   }
 
   componentWillMount() {
-    this.loadStateFromLocalStorage();
+    const username = localStorage.getItem('username');
+    const campaign = localStorage.getItem('campaign');
+    if (!username || !campaign) {
+      window.location = '/login';
+    } else {
+      API.getCampaign(campaign).then(this.onCampaignLoad).catch(console.error)
+    }
   }
 
-  loadStateFromLocalStorage = () => {
-    const goal = localStorage.getItem('car-annual-goal');
-    const dates = JSON.parse(localStorage.getItem('car-odometer-dates'));
-    const odometerReadings = JSON.parse(localStorage.getItem('car-odometer-values'));
-
-    if (
-      !goal
-      || !dates
-      || !odometerReadings
-      || !dates.length
-      || dates.length < 2
-      || !odometerReadings.length
-      || odometerReadings.length < 2
-    ) {
-      this.setState({needsSetup: true});
+  onCampaignLoad = (response) => {
+    if (response.status == 200) {
+      response.json().then(campaign => {
+        this.setState({ vehicles: campaign.vehicles }); // Might be empty
+        if (campaign.vehicles.length > 0) {
+          API.getVehicle(campaign.vehicles[0].id).then(this.onVehicleLoad).catch(console.error)
+        }
+      })
     } else {
-      const nextState = { goal, dates, odometerReadings, needsSetup: false };
-      this.setState(nextState);
+      alert('Error Loading Data');
+      console.error(response);
+    }
+  }
+
+  onVehicleLoad = (response) => {
+    console.log("onVehicleLoad", response)
+    if (response.status <= 201) {
+      response.json().then(vehicle => {
+        const dates = vehicle.history.map(({ date }) => date);
+        const odometerReadings = vehicle.history.map(({ value }) => value);
+        const needsSetup = odometerReadings.length < 2
+        this.setState({ dates, odometerReadings, needsSetup });
+      })
+    } else {
+      alert('Error Loading Vehicle Data');
+      console.error(response);
     }
   }
 
   onSetupComplete = (data) => {
     const dates = [data.date1, data.date2];
     const odometerReadings = [data.odometer1, data.odometer2];
-    localStorage.setItem('car-annual-goal', data.goal);
     this.onHistoryChange(odometerReadings, dates)
   }
 
   onHistoryChange = (odometerReadings, dates) => {
-    API.updateHistory(odometerReadings.map(
-      (o,i) => ({ odometer: o, date: dates[i] })
-    ));
-    localStorage.setItem('car-odometer-values', JSON.stringify(odometerReadings));
-    localStorage.setItem('car-odometer-dates', JSON.stringify(dates))
-    this.loadStateFromLocalStorage();
+    const vehicleId = this.state.vehicles[0].id
+    Promise.all(odometerReadings.map(
+      (value, i) => {
+        const data = { value, date: dates[i] }
+        return API.updateHistory(vehicleId, data).then(this.onVehicleLoad).catch(console.error);
+      }
+    )).then(() => this.setState({ needsSetup: false }));
   }
 
   toggle = tab => {

@@ -5,14 +5,14 @@ import DateInput from '../Chrome/DateInput';
 import OdometerInput from '../Chrome/OdometerInput';
 import './CarMiles.css';
 
-const DATE_FORMAT = 'YYYY-MM-DD';
+const DATE_FORMAT = 'YYYYMMDDTHHmmssZZ';
 
 class Setup extends Component {
   state = {
     step: 0, // TODO start at 0
     date1: moment().subtract(1, 'months').format(DATE_FORMAT), // STRING
     odometer1: 0,
-    date2: moment().format("YYYY-MM-DD"), // STRING
+    date2: moment().format(DATE_FORMAT), // STRING
     odometer2: 100000,
     goal: 13476,
   }

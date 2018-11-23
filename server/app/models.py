@@ -3,7 +3,7 @@ import json
 from flask import jsonify
 from datetime import datetime
 
-DATE_FORMAT_ISO8061 = '%Y%m%dT%H%M%SZ'  # YYYYMMDDThhmmssZ ISO 8061
+DATE_FORMAT_ISO8061 = '%Y%m%dT%H%M%S%z'  # YYYYMMDDThhmmssZ ISO 8061
 
 # Junction Tables for many-to-many relationships
 campaign_users = db.Table('campaign_users',

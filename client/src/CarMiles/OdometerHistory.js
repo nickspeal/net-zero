@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from 'moment';
 import './CarMiles.css';
 
 class OdometerHistory extends Component {
@@ -29,7 +30,7 @@ class OdometerHistory extends Component {
       <table>
         <thead>
           <tr>
-            <td></td>
+            {/* <td></td> */}
             <td>Date</td>
             <td>Odometer</td>
           </tr>
@@ -37,8 +38,10 @@ class OdometerHistory extends Component {
         <tbody>
           {this.props.odometerReadings.map((odom, index) => (
             <tr key={`${index}-${odom}`}>
-              <td><i className="fas fa-times-circle delete-button" onClick={() => this.removeEntry(index)}></i></td>
-              <td>{this.props.dates[index]}</td>
+              {/* <td><i className="fas fa-times-circle delete-button" onClick={() => this.removeEntry(index)}></i></td> */}
+              <td>
+                {moment( this.props.dates[index] ).format('MMMM Do YYYY')}
+              </td>
               <td>{odom}</td>
             </tr>
           ))}
