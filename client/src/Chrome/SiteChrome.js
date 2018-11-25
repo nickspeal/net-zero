@@ -30,14 +30,9 @@ class SiteChrome extends Component {
               <img src={logo} height={40} alt="logo" />
             </Link>
           </NavItem>
-          <NavItem>
-            <Link to="/carmiles">
-              Track your miles
-            </Link>
-          </NavItem>
           <NavItem className="pull-right">
             { this.state.isLoggedIn ? (
-              <a href='#' onClick={this.logout}>
+              <a href='/' onClick={this.logout}>
                 Log Out
               </a>
             ) : (

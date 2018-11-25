@@ -38,12 +38,28 @@ const login = (username, password = null) => {
   })
 }
 
+const getUser = (username) => {
+  console.log('getting user', username);
+  return fetch(`${BASE_URL}/user/${username}`);
+}
+
 const getCampaign = (id) => {
-  return fetch(`${BASE_URL}/campaign/${ id }`)
+  return fetch(`${BASE_URL}/campaign/${ id }`);
+}
+
+const createVehicle = (data) => {
+  const endpoint = 'resource/create';
+  return fetch(`${BASE_URL}/${endpoint}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify(data),
+  })
 }
 
 const getVehicle = (id) => {
-  return fetch(`${BASE_URL}/resource/${id}`)
+  return fetch(`${BASE_URL}/resource/${id}`);
 }
 
 
@@ -51,6 +67,8 @@ module.exports = {
   updateHistory,
   signup,
   login,
+  getUser,
   getCampaign,
   getVehicle,
+  createVehicle,
 };

@@ -4,11 +4,30 @@ import {
   Link
 } from 'react-router-dom';
 import SiteChrome from './Chrome/SiteChrome';
+import API from './api/api.js';
 import './App.css';
 
 const ICON_SIZE = 'fa-9x';
 
 class Home extends Component {
+  componentWillMount() {
+    // If user specified in localstorage, redirect to campaign page.
+    const username = localStorage.getItem('username')
+    if (username) {
+      API.getUser(username).then(response => {
+        response.json().then(user => {
+          console.log("Loaded user: ", user);
+          if (user.campaigns.length > 0) {
+            // Assume default campaign is listed first
+            const campaignId = user.campaigns[0].id;
+            window.location = `/campaign/${campaignId}`;
+          }
+          
+        })
+      })
+    }
+  }
+
   render() {
     return (
       <SiteChrome>
@@ -42,7 +61,7 @@ class Home extends Component {
         </Row>
         <Row className="home-row alt-background">
           <h3>Your Personal Environmetal Health Portfolio</h3>
-          <h5>Coming Soon: Measure your carbon footprint!</h5>
+          <h5>Please <Link to="/login">login or create an account</Link> to get started</h5>
         </Row>
         <Row className="home-row">
           <h3>More Resources</h3>

@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import Login from './auth/Login.js';
 import CarMiles from './CarMiles/CarMiles';
+import Campaign from './components/Campaign.js';
+import Vehicle from './components/Vehicle.js';
+import VehicleCreate from './components/VehicleCreate.js';
 
 import Profile from "./Profile";
 import Mockdata from "./Mockdata";
@@ -19,6 +22,9 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
+          <Route exact path="/campaign/:campaignId" component={Campaign} />
+          <Route path="/campaign/:campaignId/addvehicle" component={VehicleCreate} />
+          <Route path="/vehicle/:vehicleId" component={Vehicle} />
           <Route path="/carmiles" component={CarMiles} />
 
           {/*

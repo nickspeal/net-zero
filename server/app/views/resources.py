@@ -10,9 +10,11 @@ resources_bp = Blueprint('resources_bp', __name__, url_prefix='/api/resource')
 @resources_bp.route('/create', methods=['POST'])
 def create():
     name = request.json.get('name')
-    print("Creating vehicle with name ", name)
     mpg = float(request.json.get('mpg'))
     campaign_id = request.json.get('campaign')
+    carbon_to_manufacture = request.json.get('carbon_to_manufacture')
+    expected_life_km: request.json.get('expected_life_km')
+    units: request.json.get('units')
     
     # Convert MPG to L/100KM
     GAL_PER_L = 0.2641729
@@ -21,7 +23,11 @@ def create():
 
     vehicle = models.Vehicle(
         name=name,
-        fuel_l_per_100km=fuel_l_per_100km
+        fuel_l_per_100km=fuel_l_per_100km,
+        campaign_id=campaign_id,
+        carbon_to_manufacture=carbon_to_manufacture,
+        expected_life_km=expected_life_km,
+        units=units,
     )
     # Associate the vehicle with the campaign
     campaign = models.Campaign.query.filter_by(id=campaign_id).first_or_404()
