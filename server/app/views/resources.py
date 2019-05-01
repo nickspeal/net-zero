@@ -4,18 +4,17 @@ from sqlalchemy.exc import IntegrityError
 from datetime import datetime
 
 
-
 resources_bp = Blueprint('resources_bp', __name__, url_prefix='/api/resource')
 
 @resources_bp.route('/create', methods=['POST'])
 def create():
-    name = request.json.get('name')
-    mpg = float(request.json.get('mpg'))
-    campaign_id = request.json.get('campaign')
-    carbon_to_manufacture = request.json.get('carbon_to_manufacture')
-    expected_life_km: request.json.get('expected_life_km')
-    units: request.json.get('units')
-    
+    name = request.get_json().get('name')
+    mpg = float(request.get_json().get('mpg'))
+    campaign_id = request.get_json().get('campaign')
+    carbon_to_manufacture = request.get_json().get('carbon_to_manufacture')
+    expected_life_km = request.get_json().get('expected_life_km')
+    units = request.get_json().get('units')
+
     # Convert MPG to L/100KM
     GAL_PER_L = 0.2641729
     KM_PER_MILE = 1.609344
@@ -24,7 +23,6 @@ def create():
     vehicle = models.Vehicle(
         name=name,
         fuel_l_per_100km=fuel_l_per_100km,
-        campaign_id=campaign_id,
         carbon_to_manufacture=carbon_to_manufacture,
         expected_life_km=expected_life_km,
         units=units,

@@ -3,3 +3,4 @@ app/app.db
 app/__pycache__
 app/views/__pycache__
 *.pyc
+list

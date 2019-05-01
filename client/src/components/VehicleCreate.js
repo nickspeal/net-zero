@@ -28,7 +28,6 @@ class VehicleCreate extends Component {
 
   incrementStep = () => {
     this.setState({ step: this.state.step + 1 });
-    console.log(this.props.match.params.campaignId)
   }
 
   onComplete = () => {
